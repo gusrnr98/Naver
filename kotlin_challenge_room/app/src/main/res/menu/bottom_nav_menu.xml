@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/feedFragment"
+        android:title="피드"
+        android:icon="@drawable/ic_feed"
+        />
+    <item
+        android:id="@+id/challengeFragment"
+        android:title="목표/챌린지"
+        android:icon="@drawable/ic_calendar"
+        />
+    <item
+        android:id="@+id/thanksFragment"
+        android:title="감사일기"
+        android:icon="@drawable/ic_thanks"
+        />
+    <item
+        android:id="@+id/mygrowFragment"
+        android:title="피드"
+        android:icon="@drawable/ic_person"
+        />
+</menu>

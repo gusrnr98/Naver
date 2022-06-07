@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="month">
+        <item>월</item>
+        <item>1월</item>
+        <item>2월</item>
+        <item>3월</item>
+        <item>4월</item>
+        <item>5월</item>
+        <item>6월</item>
+        <item>7월</item>
+        <item>8월</item>
+        <item>9월</item>
+        <item>10월</item>
+        <item>11월</item>
+        <item>12월</item>
+    </string-array>
+    <string-array name="sex">
+        <item>성별</item>
+        <item>남성</item>
+        <item>여성</item>
+    </string-array>
+    <string-array name="country_code">
+        <item>+82 대한민국</item>
+        <item>+1 미국</item>
+        <item>+30 그리스</item>
+        <item>+60 말레이시아</item>
+    </string-array>
+    <string-array name="language">
+        <item>한국어</item>
+        <item>영어</item>
+        <item>중국어</item>
+        <item>일본어</item>
+    </string-array>
+</resources>
