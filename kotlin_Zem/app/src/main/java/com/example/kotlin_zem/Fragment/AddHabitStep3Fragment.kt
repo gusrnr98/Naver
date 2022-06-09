@@ -53,6 +53,8 @@ class AddHabitStep3Fragment : Fragment() {
         }
         addtab()
 
+        var tab: TabLayout = binding.step3tab
+
         return binding.root
     }
 
