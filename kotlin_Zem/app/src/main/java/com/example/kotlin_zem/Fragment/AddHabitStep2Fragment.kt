@@ -34,7 +34,7 @@ class AddHabitStep2Fragment : Fragment() {
     private var typeList = listOf<String>()
     lateinit var mAdapter: HabitTypeAdapter
     private val fragmentStep3 = AddHabitStep3Fragment()
-
+    var list = arrayListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,11 +53,27 @@ class AddHabitStep2Fragment : Fragment() {
 
         show()
 
+        setFragmentResultListener("fragment2"){ habitInfo, bundle ->
+            list = bundle.getStringArrayList("bundleKey")!!
+
+            val imageId = context?.resources?.getIdentifier(list[2],"drawable",context?.packageName)
+            binding.habitimage.setImageResource(imageId!!)
+            binding.habittitle.text = list[0] +" "+ list[1]
+
+            habittypelist(list)
+        }
+
+        binding.back.setOnClickListener {
+            var step1Fragment = AddHabitStep1Fragment()
+
+            parentFragmentManager.beginTransaction().remove(this).commit()
+            parentFragmentManager.beginTransaction().replace(R.id.addhabitstepview, step1Fragment).commit()
+        }
+
         return binding.root
     }
 
     fun show(){
-        var list = arrayListOf<String>()
         setFragmentResultListener("habitInfo"){ habitInfo, bundle ->
             list = bundle.getStringArrayList("bundleKey")!!
 
@@ -93,16 +109,13 @@ class AddHabitStep2Fragment : Fragment() {
                 typeList = listOf("알림장 준비물 챙기기","필통 챙기기","일기 쓰기", "예쁘게 글씨쓰기","기타")
             }
         }
-        mAdapter = HabitTypeAdapter(requireContext(), typeList){
-                String ->
-            var habitTypeList = arrayListOf<String>(list[0],list[1],list[2],String)
+        mAdapter = HabitTypeAdapter(requireContext(), typeList) { String ->
+            var habitTypeList = arrayListOf<String>(list[0], list[1], list[2], String)
             setFragmentResult("habittype", bundleOf("bundleKey" to habitTypeList))
             parentFragmentManager.beginTransaction()
-                .replace(R.id.addhabitstepview, fragmentStep3)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .addToBackStack(null)
+                .replace(R.id.addhabitstepview, fragmentStep3!!)
                 .commit()
-        }
+            }
         binding.habittypeReView.adapter = mAdapter
         binding.habittypeReView.layoutManager = LinearLayoutManager(requireContext())
     }

@@ -49,13 +49,23 @@ class AddHabitStep3Fragment : Fragment() {
 
         setFragmentResultListener("habittype"){ habittype, bundle ->
             var str = bundle.getStringArrayList("bundleKey")!!
+
             show(str)
+
+            binding.back.setOnClickListener {
+                back(str)
+            }
         }
         addtab()
 
-        var tab: TabLayout = binding.step3tab
-
         return binding.root
+    }
+
+    fun back(str: ArrayList<String>){
+        setFragmentResult("fragment2", bundleOf("bundleKey" to str))
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.addhabitstepview, AddHabitStep2Fragment())
+            .commit()
     }
 
     fun show(list: ArrayList<String>){

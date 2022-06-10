@@ -67,8 +67,6 @@ class AddHabitStep1Fragment : Fragment() {
             setFragmentResult("habitInfo", bundleOf("bundleKey" to list))
             parentFragmentManager.beginTransaction()
             .replace(R.id.addhabitstepview, fragmentStep2)
-            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-            .addToBackStack(null)
             .commit()
             Log.e("FRAGMENTSTEP1-2",list.toString())
         }
