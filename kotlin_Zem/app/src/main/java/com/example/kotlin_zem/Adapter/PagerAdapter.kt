@@ -1,6 +1,7 @@
 package com.example.kotlin_zem.Adapter
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -9,8 +10,9 @@ import com.example.kotlin_zem.Fragment.IngFragment
 import com.example.kotlin_zem.Fragment.WaitFragment
 
 private const val NUM_PAGES = 3
-class PagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
+class PagerAdapter(fa: Fragment) : FragmentStateAdapter(fa) {
     var tabTextList1 = arrayListOf<Int>()
+
     override fun getItemCount(): Int = NUM_PAGES
 
     fun setData(result: ArrayList<Int>){
@@ -30,6 +32,7 @@ class PagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
                 val endFragment = EndFragment()
                 var bundle = Bundle()
                 bundle.putString("END", tabTextList1[position].toString())
+                Log.e("ADAPTER",tabTextList1[position].toString() )
                 endFragment.arguments = bundle
                 endFragment
             }

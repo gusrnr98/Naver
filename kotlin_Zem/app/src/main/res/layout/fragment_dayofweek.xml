@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/dayofweek"
+    android:background="@drawable/alramlayout"
+    tools:context=".Fragment.DayofweekFragment">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/noto_sans_bold"
+        android:text="요일선택"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout8"
+        android:layout_width="310dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/tab_bg"
+        android:orientation="horizontal"
+        android:weightSum="7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView3">
+
+        <CheckBox
+            android:id="@+id/monday"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/rbth_left_selector"
+            android:button="@null"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center"
+            android:text="월"
+            android:textColor="@drawable/check_textcolor_selector"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/tuesday"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/rbth_center_selector"
+            android:button="@null"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center"
+            android:text="화"
+            android:textColor="@drawable/check_textcolor_selector"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/wednesday"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/rbth_center_selector"
+            android:button="@null"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center"
+            android:text="수"
+            android:textColor="@drawable/check_textcolor_selector"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/thursday"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/rbth_center_selector"
+            android:button="@null"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center"
+            android:text="목"
+            android:textColor="@drawable/check_textcolor_selector"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/friday"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/rbth_center_selector"
+            android:button="@null"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center"
+            android:text="금"
+            android:textColor="@drawable/check_textcolor_selector"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/saturday"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/rbth_center_selector"
+            android:button="@null"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center"
+            android:text="토"
+            android:textColor="@drawable/check_textcolor_selector"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/sunday"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/rbth_right_selector"
+            android:button="@null"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center"
+            android:text="일"
+            android:textColor="@drawable/check_textcolor_selector"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/everyday"
+        android:layout_width="310dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:button="@null"
+        android:gravity="center"
+        android:text="매일"
+        android:checked="true"
+        android:fontFamily="@font/roboto_medium"
+        android:textSize="16sp"
+        android:textColor="@drawable/everday_textcolor_selector"
+        android:background="@drawable/everdaybt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout8" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/everyday">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/cancel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/zemcon_count"
+                    android:text="닫기" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/clear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/clear"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="확인"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

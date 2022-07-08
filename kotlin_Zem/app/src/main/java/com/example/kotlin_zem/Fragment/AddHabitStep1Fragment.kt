@@ -1,5 +1,6 @@
 package com.example.kotlin_zem.Fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ import androidx.fragment.app.setFragmentResult
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.kotlin_zem.Adapter.HabitAdapter
 import com.example.kotlin_zem.DataClass.HabitItem
+import com.example.kotlin_zem.HabitMainActivity
 import com.example.kotlin_zem.R
 import com.example.kotlin_zem.databinding.FragmentAddHabitStep1Binding
 
@@ -40,9 +42,11 @@ class AddHabitStep1Fragment : Fragment() {
         HabitItem("올바른","스마트폰 사용","zemphone"),
         HabitItem("부지런한","집안 생활","zemhome"),
         HabitItem("똑똑한","학교 생할","zemschool"),
-        HabitItem("","기타","zemetc")
+        HabitItem("","직접입력","zemetc")
     )
     lateinit var mAdapter: HabitAdapter
+    private val fragmentStep3 = AddHabitStep3Fragment()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -58,17 +62,31 @@ class AddHabitStep1Fragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentAddHabitStep1Binding.inflate(inflater,container,false)
 
-        mAdapter = HabitAdapter(requireContext(), habitList){
-            habitItem ->
+        binding.back.setOnClickListener {
+            var data =  Intent(requireContext(), HabitMainActivity::class.java)
+            startActivity(data)
+        }
+        mAdapter = HabitAdapter(requireContext(), habitList) { habitItem ->
             var list = arrayListOf<String>()
             list.add(habitItem.habitsubtitle)
             list.add(habitItem.habittitle)
             list.add(habitItem.habitimage)
-            setFragmentResult("habitInfo", bundleOf("bundleKey" to list))
-            parentFragmentManager.beginTransaction()
-            .replace(R.id.addhabitstepview, fragmentStep2)
-            .commit()
-            Log.e("FRAGMENTSTEP1-2",list.toString())
+
+            if (habitItem.habittitle == "직접입력") {
+                var habitTypeList =
+                    arrayListOf<String>("", habitItem.habittitle, habitItem.habitimage, "어떤 습관인가요?")
+                setFragmentResult("habittype", bundleOf("bundleKey" to habitTypeList))
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.addhabitstepview, fragmentStep3!!)
+                    .commit()
+            } else {
+                setFragmentResult("habitInfo", bundleOf("bundleKey" to list))
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.addhabitstepview, fragmentStep2)
+                    .commit()
+                Log.e("FRAGMENTSTEP1-2", list.toString())
+
+            }
         }
         binding.habitRecyclerView.adapter = mAdapter
         binding.habitRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)

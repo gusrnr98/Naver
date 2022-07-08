@@ -3,6 +3,7 @@ package com.example.kotlin_zem
 import android.content.Context
 import android.text.TextUtils
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.TextView
 import com.google.android.material.tabs.TabLayout
@@ -32,5 +33,6 @@ class MyTabLayout : TabLayout {
         }
         tab.view.setPadding(0, 0, 0, 0)
         tab.customView = customView
+
     }
 }

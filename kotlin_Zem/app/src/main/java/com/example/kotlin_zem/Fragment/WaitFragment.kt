@@ -1,12 +1,20 @@
 package com.example.kotlin_zem.Fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.kotlin_zem.R
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
+import androidx.recyclerview.widget.GridLayoutManager
+import com.example.kotlin_zem.Adapter.ZemAdapter
+import com.example.kotlin_zem.AddHabitActivity
+import com.example.kotlin_zem.HabitInfoActivity
+import com.example.kotlin_zem.database.Zem
+import com.example.kotlin_zem.database.ZemDB
 import com.example.kotlin_zem.databinding.FragmentWaitBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -25,6 +33,10 @@ class WaitFragment : Fragment() {
     private var param2: String? = null
     private var _binding: FragmentWaitBinding? = null
     private val binding get() = _binding!!
+    var db: ZemDB? =null
+    lateinit var mAdapter: ZemAdapter
+    var zemList = listOf<Zem>()
+    var count = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,10 +50,15 @@ class WaitFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        count = 0
         // Inflate the layout for this fragment
         _binding = FragmentWaitBinding.inflate(inflater,container,false)
 
         showEmpty()
+
+        db = ZemDB.getInstance(requireContext())
+
+        run()
 
         return binding.root
     }
@@ -57,8 +74,32 @@ class WaitFragment : Fragment() {
         else {
             binding.waitempty.visibility = View.GONE
             binding.waitelayout.visibility = View.VISIBLE
-            binding.textView1.text = result
         }
+    }
+
+    fun run(){
+        var a = Thread(
+            Runnable {
+                zemList = db?.ZemDao()?.getALL()!!
+                if(zemList != null){
+                    mAdapter = ZemAdapter(requireContext(),zemList){
+                        zem ->
+                        val data = Intent(requireContext(), HabitInfoActivity::class.java)
+                        data.putExtra("ID",zem.id)
+                        data.putExtra("PUT","WAIT")
+                        Log.e("zemid",zem.id.toString())
+                        startActivity(data)
+                    }
+                    mAdapter.notifyDataSetChanged()
+
+                    binding.habitRecyclerView.adapter = mAdapter
+                    binding.habitRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+                    binding.habitRecyclerView.setHasFixedSize(true)
+                }
+            }
+        )
+        a.start()
+        a.join()
     }
 
     companion object {
